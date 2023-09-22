@@ -15,5 +15,9 @@ public class MedicoConfig : IEntityTypeConfiguration<Medico>
 
         medico.Property(m => m.Nome).HasColumnName("nome");
         medico.Property(m => m.CRM).HasColumnName("crm");
+
+        medico.HasMany<Estadia>()
+            .WithOne()
+            .HasForeignKey(e => e.MedicoId);
     }
 }

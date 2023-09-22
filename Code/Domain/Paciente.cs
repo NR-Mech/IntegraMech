@@ -15,4 +15,6 @@ public class Paciente
     public string Nome { get; set; }
 
     public DateOnly DataDeNascimento { get; set; }
+
+    public List<Estadia> Estadias { get; set; }
 }

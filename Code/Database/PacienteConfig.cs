@@ -25,5 +25,9 @@ public class PacienteConfig : IEntityTypeConfiguration<Paciente>
         paciente.HasOne<Endereco>()
             .WithOne()
             .HasForeignKey<Paciente>(x => x.EnderecoId);
+        
+        paciente.HasMany(p => p.Estadias)
+            .WithOne()
+            .HasForeignKey(e => e.PacienteId);
     }
 }
