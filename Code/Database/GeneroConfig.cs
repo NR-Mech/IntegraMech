@@ -14,5 +14,8 @@ public class GeneroConfig : IEntityTypeConfiguration<Genero>
         genero.Property(a => a.Id).ValueGeneratedOnAdd();
 
         genero.Property(m => m.Nome).HasColumnName("nome");
+
+        genero.HasData(new Genero { Id = 1, Nome = "Feminino" });
+        genero.HasData(new Genero { Id = 2, Nome = "Masculino" });
     }
 }

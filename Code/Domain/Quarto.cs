@@ -4,7 +4,7 @@ public class Quarto
 {
     public long Id { get; set; }
 
-    public string Tipo { get; set; }
+    public long TipoDeQuartoId { get; set; }
 
-    public string Status { get; set; }
+    public bool EstaOcupado { get; set; }
 }

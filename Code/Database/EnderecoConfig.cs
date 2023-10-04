@@ -16,5 +16,9 @@ public class EnderecoConfig : IEntityTypeConfiguration<Endereco>
         endereco.Property(m => m.CEP).HasColumnName("cep");
         endereco.Property(m => m.Rua).HasColumnName("rua");
         endereco.Property(m => m.Bairro).HasColumnName("bairro");
+
+        endereco.HasOne<Cidade>()
+            .WithMany()
+            .HasForeignKey(e => e.CidadeId);
     }
 }

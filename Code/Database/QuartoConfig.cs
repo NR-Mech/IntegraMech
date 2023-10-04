@@ -16,5 +16,9 @@ public class QuartoConfig : IEntityTypeConfiguration<Quarto>
         quarto.HasMany<Estadia>()
             .WithOne()
             .HasForeignKey(e => e.QuartoId);
+
+        quarto.HasOne<TipoDeQuarto>()
+            .WithMany()
+            .HasForeignKey(q => q.TipoDeQuartoId);
     }
 }
