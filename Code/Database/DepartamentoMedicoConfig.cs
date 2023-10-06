@@ -19,5 +19,10 @@ public class DepartamentoMedicoConfig : IEntityTypeConfiguration<DepartamentoMed
         departamentoMedico.HasOne<Departamento>()
             .WithMany()
             .HasForeignKey(x => x.DepartamentoId);
+
+        departamentoMedico.HasData(new DepartamentoMedico { DepartamentoId = 1, MedicoId = 1 });
+        departamentoMedico.HasData(new DepartamentoMedico { DepartamentoId = 1, MedicoId = 2 });
+        departamentoMedico.HasData(new DepartamentoMedico { DepartamentoId = 1, MedicoId = 3 });
+        departamentoMedico.HasData(new DepartamentoMedico { DepartamentoId = 2, MedicoId = 2 });
     }
 }

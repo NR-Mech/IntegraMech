@@ -23,11 +23,44 @@ public class PacienteConfig : IEntityTypeConfiguration<Paciente>
             .HasForeignKey(x => x.GeneroId);
 
         paciente.HasOne<Endereco>()
-            .WithOne()
-            .HasForeignKey<Paciente>(x => x.EnderecoId);
+            .WithMany()
+            .HasForeignKey(x => x.EnderecoId);
         
         paciente.HasMany(p => p.Estadias)
             .WithOne()
             .HasForeignKey(e => e.PacienteId);
+
+        paciente.HasData(new Paciente
+        {
+            Id = 1,
+            GeneroId = 2,
+            EnderecoId = 1,
+            Cpf = "05531923023",
+            CNS = "4684686781",
+            Nome = "Reginaldo Rossi",
+            DataDeNascimento = new DateOnly(1944, 02, 14),
+        });
+
+        paciente.HasData(new Paciente
+        {
+            Id = 2,
+            GeneroId = 2,
+            EnderecoId = 2,
+            Cpf = "29328343046",
+            CNS = "6186168168",
+            Nome = "Faustão",
+            DataDeNascimento = new DateOnly(1950, 04, 02),
+        });
+
+        paciente.HasData(new Paciente
+        {
+            Id = 3,
+            GeneroId = 1,
+            EnderecoId = 2,
+            Cpf = "48993836060",
+            CNS = "8451947367",
+            Nome = "Raquel Dos Teclados",
+            DataDeNascimento = new DateOnly(1980, 09, 18),
+        });
     }
 }

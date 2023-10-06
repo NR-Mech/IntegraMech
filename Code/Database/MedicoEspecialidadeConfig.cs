@@ -19,5 +19,12 @@ public class MedicoEspecialidadeConfig : IEntityTypeConfiguration<MedicoEspecial
         me.HasOne<Especialidade>()
             .WithMany()
             .HasForeignKey(x => x.EspecialidadeId);
+        
+        me.HasData(new MedicoEspecialidade { MedicoId = 1, EspecialidadeId = 1 });
+        me.HasData(new MedicoEspecialidade { MedicoId = 1, EspecialidadeId = 2 });
+        me.HasData(new MedicoEspecialidade { MedicoId = 1, EspecialidadeId = 3 });
+        me.HasData(new MedicoEspecialidade { MedicoId = 1, EspecialidadeId = 4 });
+        me.HasData(new MedicoEspecialidade { MedicoId = 2, EspecialidadeId = 1 });
+        me.HasData(new MedicoEspecialidade { MedicoId = 3, EspecialidadeId = 5 });
     }
 }
