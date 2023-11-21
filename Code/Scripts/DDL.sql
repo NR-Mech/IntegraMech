@@ -100,7 +100,7 @@ CREATE TABLE mech.estadias (
     quarto_id bigint NOT NULL,
     motivo_da_admissao text NOT NULL,
     data_da_admissao timestamp without time zone NOT NULL,
-    data_da_alta timestamp without time zone NOT NULL,
+    data_da_alta timestamp without time zone NULL,
     CONSTRAINT pk_estadias PRIMARY KEY (id),
     CONSTRAINT fk_estadias_medicos_medico_id FOREIGN KEY (medico_id) REFERENCES mech.medicos (id) ON DELETE CASCADE,
     CONSTRAINT fk_estadias_paciente_paciente_id FOREIGN KEY (paciente_id) REFERENCES mech.pacientes (id) ON DELETE CASCADE,

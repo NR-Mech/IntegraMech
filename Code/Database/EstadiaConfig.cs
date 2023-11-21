@@ -21,7 +21,6 @@ public class EstadiaConfig : IEntityTypeConfiguration<Estadia>
             QuartoId = 1,
             MotivoDaAdmissao = "Coma alcoólico / deu PT",
             DataDaAdmissao = DateTime.Now.AddDays(-1),
-            DataDaAlta = DateTime.Now,
         });
 
         estadia.HasData(new Estadia

@@ -14,5 +14,5 @@ public class Estadia
 
     public DateTime DataDaAdmissao { get; set; }
 
-    public DateTime DataDaAlta { get; set; }
+    public DateTime? DataDaAlta { get; set; }
 }

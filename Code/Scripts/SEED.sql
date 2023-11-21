@@ -1,8 +1,8 @@
-﻿INSERT INTO mech.departamentos (descricao, nome) VALUES
-('Departamento de Urgência e Emergência', 'Urgência e Emergência'), -- 1
-('Departamento de Administração', 'Administração'),                 -- 2
-('Departamento de Recursos Humanos', 'Recursos Humanos'),           -- 3
-('Departamento de Apoio Terapêutico', 'Apoio Terapêutico');         -- 4
+﻿INSERT INTO mech.departamentos (nome, descricao) VALUES
+('Urgência e Emergência', 'Departamento de Urgência e Emergência'), -- 1
+('Administração', 'Departamento de Administração'),                 -- 2
+('Recursos Humanos', 'Departamento de Recursos Humanos'),           -- 3
+('Apoio Terapêutico', 'Departamento de Apoio Terapêutico');         -- 4
 
 
 INSERT INTO mech.especialidades (nome) VALUES
@@ -102,5 +102,5 @@ INSERT INTO mech.pacientes (cns, cpf, data_de_nascimento, endereco_id, genero_id
 
 
 INSERT INTO mech.estadias (data_da_admissao, data_da_alta, medico_id, motivo_da_admissao, paciente_id, quarto_id) VALUES
-('2023-11-16 13:57:45', '2023-11-17 19:30:22', 1, 'Coma alcoólico / deu PT', 1, 1), -- 1
+('2023-11-16 13:57:45', NULL, 1, 'Coma alcoólico / deu PT', 1, 1), -- 1
 ('2023-10-18 02:10:59', '2023-11-07 12:05:20', 2, 'Transplante de coração', 2, 3);  -- 2
