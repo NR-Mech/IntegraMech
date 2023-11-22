@@ -1,13 +1,23 @@
 # TODOS
 
+## Grupo F – Backup and Restore
+
+a. (Sthefany) Definição e propósito do assunto a ser apresentado
+d. (Sthefany) Vantagens e desvantagens do uso do assunto a ser apresentado
+b. (Gutto) Exemplos de situações em que o assunto a ser apresentado são úteis
+c. (Junior) Explicação passo a passo de como criar e usar o assunto a ser apresentado
+e. (Zaqueu) Demonstração prática de um exemplo do assunto a ser apresentado desenvolvido pelo grupo
+
+
 - [ ] Documentacao atualizada:
-    - [ ] Requisitos
-    - [ ] Mapa Mental
-    - [ ] Subprocessos BPM (Heflo)
-- [ ] Frontend
-- [ ] Modelo ER normalizado
-- [ ] Dicionario de Dados (???)
-- [ ] Controle de Atividades (JIRA)
+    - [ ] Atualizar site + ata de reuniao (Sthefany)
+    - [ ] Requisitos (Sthefany e Gutto)
+    - [V] Mapa Mental
+    - [V] Subprocessos BPM (Heflo)
+- [ ] Frontend (Junior)
+- [ ] Modelo ER normalizado (Sthefany)
+- [ ] Dicionario de Dados (Zaqueu)
+- [ ] Controle de Atividades (JIRA) (Gutto)
 
 - [V] Minimundo
 - [V] GitHub Repo
