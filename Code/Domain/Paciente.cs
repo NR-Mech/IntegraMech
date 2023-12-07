@@ -5,8 +5,10 @@ public class Paciente
     public long Id { get; set; }
 
     public long GeneroId { get; set; }
+    public Genero Genero { get; set; }
 
     public long EnderecoId { get; set; }
+    public Endereco Endereco { get; set; }
 
     public string Cpf { get; set; }
 

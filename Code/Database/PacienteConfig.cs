@@ -18,11 +18,11 @@ public class PacienteConfig : IEntityTypeConfiguration<Paciente>
         paciente.Property(m => m.Nome).HasColumnName("nome");
         paciente.Property(m => m.DataDeNascimento).HasColumnName("data_de_nascimento");
 
-        paciente.HasOne<Genero>()
+        paciente.HasOne(p => p.Genero)
             .WithMany()
             .HasForeignKey(x => x.GeneroId);
 
-        paciente.HasOne<Endereco>()
+        paciente.HasOne(p => p.Endereco)
             .WithMany()
             .HasForeignKey(x => x.EnderecoId);
         

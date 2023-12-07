@@ -1,5 +1,4 @@
-using Syki.Mech;
-using Mech.Database;
+using Mech.Configs;
 using Mech.Settings;
 
 namespace Mech;
@@ -15,14 +14,19 @@ public class Startup
         services.AddRouting(options => options.LowercaseUrls = true);
 
         services.AddEfCoreConfigs();
+
+        services.AddCorsConfigs();
+
+        services.AddSwaggerConfigs();
     }
 
-    public static void Configure(IApplicationBuilder app, MechDbContext ctx)
+    public static void Configure(IApplicationBuilder app)
     {
-        ctx.Database.EnsureDeleted();
-        ctx.Database.EnsureCreated();
+        app.UseCors();
 
         app.UseRouting();
+
+        app.UseSwaggerThings();
 
         app.UseEndpoints(options => options.MapControllers());
     }

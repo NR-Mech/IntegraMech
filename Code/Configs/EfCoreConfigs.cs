@@ -2,7 +2,7 @@ using Mech.Settings;
 using Mech.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace Syki.Mech;
+namespace Mech.Configs;
 
 public static class EfCoreConfigs
 {
