@@ -61,6 +61,8 @@ LEFT JOIN
 	mech.medicos__especialidades me ON me.medico_id = m.id
 LEFT JOIN
 	mech.especialidades e ON e.id = me.especialidade_id
+WHERE
+	e.nome IN ('Imunologia', 'Cardiologia')
 GROUP BY
 	m.id
 ORDER BY
