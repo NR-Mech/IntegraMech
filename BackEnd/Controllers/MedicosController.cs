@@ -5,12 +5,14 @@ using Microsoft.EntityFrameworkCore;
 namespace Mech.Code.Controllers;
 
 [ApiController, Route("[controller]")]
-public class MedicosController : ControllerBase
+public class MedicosController(MechDbContext ctx) : ControllerBase
 {
-    private readonly MechDbContext _ctx;
-    public MedicosController(MechDbContext ctx) => _ctx = ctx;
-
+    /// <summary>
+    /// Retorna todos os médicos e suas respectivas especialidades.
+    /// </summary>
     [HttpGet("")]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(MedicoOut), 200)]
     public async Task<IActionResult> GetAll()
     {
         FormattableString sql = $@"
@@ -30,7 +32,7 @@ public class MedicosController : ControllerBase
                 m.id
         ";
 
-        var medicos = await _ctx.Database.SqlQuery<MedicoOut>(sql).ToListAsync();
+        var medicos = await ctx.Database.SqlQuery<MedicoOut>(sql).ToListAsync();
 
         return Ok(medicos);
     }

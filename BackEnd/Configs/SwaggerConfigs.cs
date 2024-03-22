@@ -32,5 +32,12 @@ public static class SwaggerConfigs
             options.SwaggerEndpoint("/swagger/v1/swagger.json", "Mech 1.0");
             options.DefaultModelsExpandDepth(-1);
         });
+
+        app.UseReDoc(c =>
+        {
+            c.RoutePrefix = "docs";
+            c.DocumentTitle = "Mech API";
+            c.SpecUrl = "/swagger/v1/swagger.json";
+        });
     }
 }
