@@ -1,3 +1,4 @@
+using Mech.Code.Dtos;
 using Mech.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,13 +20,4 @@ public class DepartamentosController(MechDbContext ctx) : ControllerBase
 
         return Ok(departamentos.ConvertAll(d => new DepartamentoOut { Id = d.Id, Nome = d.Nome, Descricao = d.Descricao }));
     }
-}
-
-public class DepartamentoOut
-{
-    public long Id { get; set; }
-
-    public string Nome { get; set; }
-
-    public string Descricao { get; set; }
 }

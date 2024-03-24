@@ -1,3 +1,4 @@
+using Mech.Code.Dtos;
 using Mech.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -46,17 +47,3 @@ public class PacientesController(MechDbContext ctx) : ControllerBase
     }
 }
 
-public class PacienteOut
-{
-    public long Id { get; set; }
-    public string Cpf { get; set; }
-    public string CNS { get; set; }
-    public string Nome { get; set; }
-    public DateOnly DataDeNascimento { get; set; }
-    public string Genero { get; set; }
-    public string Cidade { get; set; }
-    public string Estado { get; set; }
-    public string CEP { get; set; }
-    public string Rua { get; set; }
-    public string Bairro { get; set; }
-}
