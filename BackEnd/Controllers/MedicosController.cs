@@ -1,3 +1,4 @@
+using Mech.Code.Dtos;
 using Mech.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -38,9 +39,3 @@ public class MedicosController(MechDbContext ctx) : ControllerBase
     }
 }
 
-public class MedicoOut
-{
-    public long Id { get; set; }
-    public string Nome { get; set; }
-    public string[] Especialidades { get; set; }
-}
