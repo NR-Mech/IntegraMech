@@ -1,11 +1,4 @@
 {
     "sqltools.useNodeRuntime": true,
-    "sqltools.connections": [
-        {
-            "previewLimit": 50,
-            "driver": "DuckDB",
-            "database": "${workspaceFolder:emergency-classification}/emergency_classification/data/interim/interim.db",
-            "name": "Interim"
-        }
-    ]
+    "sqltools.connections": []
 }
