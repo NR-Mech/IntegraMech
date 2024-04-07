@@ -1,6 +1,7 @@
 using Mech.Configs;
 using Mech.Database;
 using Mech.Settings;
+using Mech.Code.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Mech;
@@ -29,6 +30,8 @@ public class Startup
         app.UseCors();
 
         app.UseRouting();
+
+        app.UseMiddleware<DomainExceptionMiddleware>();
 
         app.UseSwaggerThings();
 
