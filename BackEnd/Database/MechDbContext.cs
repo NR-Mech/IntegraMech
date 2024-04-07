@@ -9,6 +9,7 @@ public class MechDbContext : DbContext
     public DbSet<Departamento> Departamentos { get; set; }
     public DbSet<Paciente> Pacientes { get; set; }
 
+    public DbSet<Especialidade> Especialidades { get; set; }
     public MechDbContext(DbContextOptions<MechDbContext> options) : base(options) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
