@@ -17,16 +17,12 @@ public class DepartamentosController(MechDbContext ctx) : ControllerBase
     [ProducesResponseType(typeof(DepartamentoOut), 200)]
     public async Task<IActionResult> Create([FromBody] DepartamentoIn data)
     {
-        var departamento = new Departamento
-        {
-            Nome = data.Nome,
-            Descricao = data.Descricao
-        };
+        var departamento = new Departamento(data.Nome, data.Descricao);
 
         ctx.Add(departamento);
         await ctx.SaveChangesAsync();
 
-        return Ok(new DepartamentoOut { Id = departamento.Id, Nome = departamento.Nome, Descricao = departamento.Descricao });
+        return Ok(departamento.ToOut());
     }
 
     /// <summary>
@@ -39,6 +35,6 @@ public class DepartamentosController(MechDbContext ctx) : ControllerBase
     {
         var departamentos = await ctx.Departamentos.ToListAsync();
 
-        return Ok(departamentos.ConvertAll(d => new DepartamentoOut { Id = d.Id, Nome = d.Nome, Descricao = d.Descricao }));
+        return Ok(departamentos.ConvertAll(d => d.ToOut()));
     }
 }

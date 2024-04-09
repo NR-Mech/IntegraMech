@@ -1,71 +1,66 @@
+using Mech.Domain;
+using Mech.Database;
 using Mech.Code.Dtos;
 using Mech.Code.Dtos.Input;
-using Mech.Database;
-using Mech.Domain;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Mech.Code.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Mech.Code.Controllers;
 
 [ApiController, Route("[controller]")]
 public class EspecialidadesController(MechDbContext ctx) : ControllerBase
 {
-
-    [HttpGet("")]
-    [Produces("application/json")]
-    [ProducesResponseType(typeof(EspecialidadeOut), 200)]
-    public async Task<IActionResult> GetAll()
-    {
-        var especialidades = await ctx.Especialidades.ToListAsync();
-
-
-        return Ok(especialidades.ConvertAll(e => new EspecialidadeOut { Id = e.Id, Nome = e.Nome }));
-
-    }
-    [HttpPost("criar")]
-    [Produces("application/json")]
+    [HttpPost("")]
+    [Produces("application/json"), Consumes("application/json")]
     [ProducesResponseType(201)]
     public async Task<IActionResult> Create([FromBody] EspecialidadeIn data )
     {
-        var entity = new Especialidade { Nome = data.Nome };
-        ctx.Especialidades.Add(entity);
+        var especialidade = new Especialidade(data.Nome);
+        ctx.Especialidades.Add(especialidade);
 
         await ctx.SaveChangesAsync();
 
         return Created();
     }
 
-    [HttpPut("atualizar/{id}")]
+    [HttpPut("{id}")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(EspecialidadeOut), 200)]
-    public async Task<IActionResult> Update(long id,[FromBody] EspecialidadeIn data)
+    public async Task<IActionResult> Update([FromRoute] long id, [FromBody] EspecialidadeIn data)
     {
+        var especialidade = await ctx.Especialidades.FirstOrDefaultAsync(e => e.Id == id);
 
-        var entity = ctx.Especialidades.First(e => e.Id == id);
+        if (especialidade == null)
+            Throw.DE000.Now();
 
-        if (entity == null)
-            return BadRequest();
-
-
-        entity.Nome = data.Nome;
-
-        ctx.Especialidades.Update(entity);
-
+        especialidade.Update(data.Nome);
         await ctx.SaveChangesAsync();
 
-        return Ok(new EspecialidadeOut { Id = entity.Id, Nome = entity.Nome });
-
+        return Ok(especialidade.ToOut());
     }
 
-    [HttpDelete("deletar/{id}")]
+    [HttpGet("")]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(List<EspecialidadeOut>), 200)]
+    public async Task<IActionResult> GetAll()
+    {
+        var especialidades = await ctx.Especialidades.ToListAsync();
+
+        return Ok(especialidades.ConvertAll(e => e.ToOut()));
+    }
+
+    [HttpDelete("{id}")]
     [ProducesResponseType(typeof(NoContent),204)]
-    public async Task<IActionResult> Delete(long id){
+    public async Task<IActionResult> Delete([FromRoute] long id)
+    {
+        var especialidade = await ctx.Especialidades.FirstOrDefaultAsync(e => e.Id == id);
 
-        var entity = ctx.Especialidades.First(e => e.Id == id);
+        if (especialidade == null)
+            Throw.DE000.Now();
 
-        ctx.Remove(entity);
-
+        ctx.Remove(especialidade!);
         await ctx.SaveChangesAsync();
 
         return NoContent();
