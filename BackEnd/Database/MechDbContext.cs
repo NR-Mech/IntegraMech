@@ -1,4 +1,5 @@
 using Mech.Domain;
+using Mech.Code.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Mech.Database;
@@ -21,5 +22,22 @@ public class MechDbContext : DbContext
         builder.HasDefaultSchema("mech");
 
         builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+    }
+
+    public async Task ResetDbAsync()
+    {
+        if (Env.IsTesting())
+        {
+            await Database.EnsureDeletedAsync();
+            await Database.EnsureCreatedAsync();
+        }
+    }
+
+    public void MigrateDb()
+    {
+        if (!Env.IsTesting())
+        {
+            Database.Migrate();
+        }
     }
 }

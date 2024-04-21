@@ -1,5 +1,5 @@
-using Mech.Code.Dtos;
 using Mech.Database;
+using Mech.Code.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,4 +44,3 @@ public class EstadiasController(MechDbContext ctx) : ControllerBase
         return Ok(medicos);
     }
 }
-

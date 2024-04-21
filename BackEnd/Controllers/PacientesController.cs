@@ -1,3 +1,4 @@
+using Mech.Domain;
 using Mech.Database;
 using Mech.Code.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,22 @@ namespace Mech.Code.Controllers;
 [ApiController, Route("[controller]")]
 public class PacientesController(MechDbContext ctx) : ControllerBase
 {
+    /// <summary>
+    /// Cria um novo paciente.
+    /// </summary>
+    [HttpPost("")]
+    [Produces("application/json"), Consumes("application/json")]
+    [ProducesResponseType(201)]
+    public async Task<IActionResult> Create([FromBody] PacienteIn data)
+    {
+        var paciente = new Paciente { Nome = data.Nome };
+        ctx.Pacientes.Add(paciente);
+
+        await ctx.SaveChangesAsync();
+
+        return Created();
+    }
+
     /// <summary>
     /// Retorna todos os pacientes e seus respectivos endereços.
     /// </summary>
@@ -46,4 +63,3 @@ public class PacientesController(MechDbContext ctx) : ControllerBase
         return Ok(pacientes);
     }
 }
-

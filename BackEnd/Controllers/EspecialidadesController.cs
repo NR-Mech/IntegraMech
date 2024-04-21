@@ -1,8 +1,6 @@
 using Mech.Domain;
 using Mech.Database;
 using Mech.Code.Dtos;
-using Mech.Code.Dtos.Input;
-using Mech.Code.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -22,7 +20,7 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
 
         await ctx.SaveChangesAsync();
 
-        return Created();
+        return Created("", especialidade.ToOut());
     }
 
     [HttpPut("{id}")]
@@ -33,7 +31,7 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
         var especialidade = await ctx.Especialidades.FirstOrDefaultAsync(e => e.Id == id);
 
         if (especialidade == null)
-            Throw.DE000.Now();
+            NotFound();
 
         especialidade.Update(data.Nome);
         await ctx.SaveChangesAsync();
@@ -46,7 +44,7 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
     [ProducesResponseType(typeof(List<EspecialidadeOut>), 200)]
     public async Task<IActionResult> GetAll()
     {
-        var especialidades = await ctx.Especialidades.ToListAsync();
+        var especialidades = await ctx.Especialidades.OrderBy(e => e.Nome).ToListAsync();
 
         return Ok(especialidades.ConvertAll(e => e.ToOut()));
     }
@@ -58,7 +56,7 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
         var especialidade = await ctx.Especialidades.FirstOrDefaultAsync(e => e.Id == id);
 
         if (especialidade == null)
-            Throw.DE000.Now();
+            NotFound();
 
         ctx.Remove(especialidade!);
         await ctx.SaveChangesAsync();

@@ -25,7 +25,7 @@ public class Startup
 
     public static void Configure(IApplicationBuilder app, MechDbContext ctx)
     {
-        ctx.Database.Migrate();
+        ctx.MigrateDb();
 
         app.UseCors();
 

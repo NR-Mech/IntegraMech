@@ -11,11 +11,8 @@ public class Paciente
     public Endereco Endereco { get; set; }
 
     public string Cpf { get; set; }
-
     public string CNS { get; set; }
-
     public string Nome { get; set; }
-
     public DateOnly DataDeNascimento { get; set; }
 
     public List<Estadia> Estadias { get; set; }
