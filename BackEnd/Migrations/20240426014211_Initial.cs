@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BackEnd.Migrations
 {
     /// <inheritdoc />
-    public partial class First : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -465,8 +465,8 @@ namespace BackEnd.Migrations
                 columns: new[] { "id", "data_da_admissao", "data_da_alta", "medico_id", "motivo_da_admissao", "paciente_id", "quarto_id" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2024, 3, 21, 21, 0, 57, 622, DateTimeKind.Local).AddTicks(4018), null, 1L, "Coma alcoólico / deu PT", 1L, 1L },
-                    { 2L, new DateTime(2024, 2, 21, 21, 0, 57, 622, DateTimeKind.Local).AddTicks(4046), new DateTime(2024, 3, 12, 21, 0, 57, 622, DateTimeKind.Local).AddTicks(4047), 2L, "Transplante de coração", 2L, 3L }
+                    { 1L, new DateTime(2024, 4, 24, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(718), null, 1L, "Coma alcoólico / deu PT", 1L, 1L },
+                    { 2L, new DateTime(2024, 3, 26, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(741), new DateTime(2024, 4, 15, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(741), 2L, "Transplante de coração", 2L, 3L }
                 });
 
             migrationBuilder.CreateIndex(

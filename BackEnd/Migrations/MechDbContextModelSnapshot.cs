@@ -317,7 +317,7 @@ namespace BackEnd.Migrations
                         new
                         {
                             Id = 1L,
-                            DataDaAdmissao = new DateTime(2024, 3, 21, 21, 0, 57, 622, DateTimeKind.Local).AddTicks(4018),
+                            DataDaAdmissao = new DateTime(2024, 4, 24, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(718),
                             MedicoId = 1L,
                             MotivoDaAdmissao = "Coma alcoólico / deu PT",
                             PacienteId = 1L,
@@ -326,8 +326,8 @@ namespace BackEnd.Migrations
                         new
                         {
                             Id = 2L,
-                            DataDaAdmissao = new DateTime(2024, 2, 21, 21, 0, 57, 622, DateTimeKind.Local).AddTicks(4046),
-                            DataDaAlta = new DateTime(2024, 3, 12, 21, 0, 57, 622, DateTimeKind.Local).AddTicks(4047),
+                            DataDaAdmissao = new DateTime(2024, 3, 26, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(741),
+                            DataDaAlta = new DateTime(2024, 4, 15, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(741),
                             MedicoId = 2L,
                             MotivoDaAdmissao = "Transplante de coração",
                             PacienteId = 2L,
