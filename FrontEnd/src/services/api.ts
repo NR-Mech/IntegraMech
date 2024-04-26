@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const Api = axios.create({
-    baseURL: 'http://localhost:5117'
+    baseURL: 'https://mech-api.zaqbit.com'
 });
