@@ -12,7 +12,7 @@ public class DepartamentosController(MechDbContext ctx) : ControllerBase
     /// <summary>
     /// Cria um novo departamento.
     /// </summary>
-    [HttpPost("")]
+    [HttpPost]
     [Produces("application/json"), Consumes("application/json")]
     [ProducesResponseType(typeof(DepartamentoOut), 200)]
     public async Task<IActionResult> Create([FromBody] DepartamentoIn data)
@@ -28,7 +28,7 @@ public class DepartamentosController(MechDbContext ctx) : ControllerBase
     /// <summary>
     /// Retorna todos os departamentos.
     /// </summary>
-    [HttpGet("")]
+    [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(List<DepartamentoOut>), 200)]
     public async Task<IActionResult> GetAll()

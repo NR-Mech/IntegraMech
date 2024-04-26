@@ -12,7 +12,7 @@ public class MedicosController(MechDbContext ctx) : ControllerBase
     /// <summary>
     /// Cria um novo médico.
     /// </summary>
-    [HttpPost("")]
+    [HttpPost]
     [Produces("application/json"), Consumes("application/json")]
     [ProducesResponseType(201)]
     public async Task<IActionResult> Create([FromBody] MedicoIn data)
@@ -28,7 +28,7 @@ public class MedicosController(MechDbContext ctx) : ControllerBase
     /// <summary>
     /// Retorna todos os médicos e suas respectivas especialidades.
     /// </summary>
-    [HttpGet("")]
+    [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(MedicoOut), 200)]
     public async Task<IActionResult> GetAll()

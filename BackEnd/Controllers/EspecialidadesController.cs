@@ -10,7 +10,7 @@ namespace Mech.Code.Controllers;
 [ApiController, Route("[controller]")]
 public class EspecialidadesController(MechDbContext ctx) : ControllerBase
 {
-    [HttpPost("")]
+    [HttpPost]
     [Produces("application/json"), Consumes("application/json")]
     [ProducesResponseType(201)]
     public async Task<IActionResult> Create([FromBody] EspecialidadeIn data )
@@ -39,7 +39,7 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
         return Ok(especialidade.ToOut());
     }
 
-    [HttpGet("")]
+    [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(List<EspecialidadeOut>), 200)]
     public async Task<IActionResult> GetAll()

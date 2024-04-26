@@ -12,7 +12,7 @@ public class PacientesController(MechDbContext ctx) : ControllerBase
     /// <summary>
     /// Cria um novo paciente.
     /// </summary>
-    [HttpPost("")]
+    [HttpPost]
     [Produces("application/json"), Consumes("application/json")]
     [ProducesResponseType(201)]
     public async Task<IActionResult> Create([FromBody] PacienteIn data)
@@ -28,7 +28,7 @@ public class PacientesController(MechDbContext ctx) : ControllerBase
     /// <summary>
     /// Retorna todos os pacientes e seus respectivos endereços.
     /// </summary>
-    [HttpGet("")]
+    [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(PacienteOut), 200)]
     public async Task<IActionResult> GetAll()

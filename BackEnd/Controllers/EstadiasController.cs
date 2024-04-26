@@ -11,7 +11,7 @@ public class EstadiasController(MechDbContext ctx) : ControllerBase
     /// <summary>
     /// Retorna todas as estadias dos pacientes.
     /// </summary>
-    [HttpGet("")]
+    [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(EstadiaOut), 200)]
     public async Task<IActionResult> GetAll()

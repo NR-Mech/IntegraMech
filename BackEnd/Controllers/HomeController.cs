@@ -6,6 +6,6 @@ namespace Mech.Code.Controllers;
 [ApiExplorerSettings(IgnoreApi = true)]
 public class HomeController : ControllerBase
 {
-    [HttpGet("")]
+    [HttpGet]
     public IActionResult Get() => Redirect("/swagger");
 }
