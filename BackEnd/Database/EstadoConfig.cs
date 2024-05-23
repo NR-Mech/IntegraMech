@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,6 +11,7 @@ public class EstadoConfig : IEntityTypeConfiguration<Estado>
 
         estado.HasKey(a => a.Id);
 
+        if (Env.IsTesting()) return;
         estado.HasData(new Estado { Id = "AC", Nome = "Acre" });
         estado.HasData(new Estado { Id = "AL", Nome = "Alagoas" });
         estado.HasData(new Estado { Id = "AP", Nome = "Amapá" });

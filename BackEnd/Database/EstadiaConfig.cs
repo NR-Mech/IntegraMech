@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,6 +12,7 @@ public class EstadiaConfig : IEntityTypeConfiguration<Estadia>
         estadia.HasKey(a => a.Id);
         estadia.Property(a => a.Id).ValueGeneratedOnAdd();
 
+        if (Env.IsTesting()) return;
         estadia.HasData(new Estadia
         {
             Id = 1,

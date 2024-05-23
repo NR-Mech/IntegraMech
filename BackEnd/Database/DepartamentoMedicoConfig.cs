@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,6 +19,7 @@ public class DepartamentoMedicoConfig : IEntityTypeConfiguration<DepartamentoMed
             .WithMany()
             .HasForeignKey(x => x.DepartamentoId);
 
+        if (Env.IsTesting()) return;
         departamentoMedico.HasData(new DepartamentoMedico { DepartamentoId = 1, MedicoId = 1 });
         departamentoMedico.HasData(new DepartamentoMedico { DepartamentoId = 1, MedicoId = 2 });
         departamentoMedico.HasData(new DepartamentoMedico { DepartamentoId = 1, MedicoId = 3 });

@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -30,6 +29,7 @@ public class PacienteConfig : IEntityTypeConfiguration<Paciente>
             .WithOne()
             .HasForeignKey(e => e.PacienteId);
 
+        if (Env.IsTesting()) return;
         paciente.HasData(new Paciente
         {
             Id = 1,

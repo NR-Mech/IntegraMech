@@ -22,7 +22,7 @@ public class DepartamentosController(MechDbContext ctx) : ControllerBase
         ctx.Add(departamento);
         await ctx.SaveChangesAsync();
 
-        return Ok(departamento.ToOut());
+        return Created("", departamento.ToOut());
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public class DepartamentosController(MechDbContext ctx) : ControllerBase
     [ProducesResponseType(typeof(List<DepartamentoOut>), 200)]
     public async Task<IActionResult> GetAll()
     {
-        var departamentos = await ctx.Departamentos.ToListAsync();
+        var departamentos = await ctx.Departamentos.OrderBy(x => x.Nome).ToListAsync();
 
         return Ok(departamentos.ConvertAll(d => d.ToOut()));
     }

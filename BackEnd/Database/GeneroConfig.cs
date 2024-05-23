@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,6 +14,7 @@ public class GeneroConfig : IEntityTypeConfiguration<Genero>
 
         genero.Property(m => m.Nome).HasColumnName("nome");
 
+        if (Env.IsTesting()) return;
         genero.HasData(new Genero { Id = 1, Nome = "Feminino" });
         genero.HasData(new Genero { Id = 2, Nome = "Masculino" });
     }

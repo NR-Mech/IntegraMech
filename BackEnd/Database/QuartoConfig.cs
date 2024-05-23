@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,6 +20,7 @@ public class QuartoConfig : IEntityTypeConfiguration<Quarto>
             .WithMany()
             .HasForeignKey(q => q.TipoDeQuartoId);
         
+        if (Env.IsTesting()) return;
         quarto.HasData(new Quarto { Id = 1, TipoDeQuartoId = 1, EstaOcupado = true });
         quarto.HasData(new Quarto { Id = 2, TipoDeQuartoId = 2, EstaOcupado = false });
         quarto.HasData(new Quarto { Id = 3, TipoDeQuartoId = 2, EstaOcupado = true });
