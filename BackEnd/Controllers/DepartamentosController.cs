@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Mech.Database;
 using Mech.Code.Dtos;
 using Microsoft.AspNetCore.Mvc;

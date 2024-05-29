@@ -53,7 +53,7 @@ public class DepartamentosIntegrationTests : IntegrationTestBase
         await client.PostAsJsonAsync("/departamentos", dept02);
 
         // Act
-        var departamentos = await client.GetFromJsonAsync<List<EspecialidadeOut>>("/departamentos") ?? [];
+        var departamentos = await client.GetFromJsonAsync<List<DepartamentoOut>>("/departamentos") ?? [];
 
         // Assert
         departamentos[0].Nome.Should().Be("Apoio Terapêutico");

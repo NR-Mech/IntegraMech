@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Mech.Database;
 using Mech.Code.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +10,8 @@ namespace Mech.Code.Controllers;
 public class EspecialidadesController(MechDbContext ctx) : ControllerBase
 {
     [HttpPost]
-    [Produces("application/json"), Consumes("application/json")]
     [ProducesResponseType(201)]
+    [Produces("application/json"), Consumes("application/json")]
     public async Task<IActionResult> Create([FromBody] EspecialidadeIn data )
     {
         var especialidade = new Especialidade(data.Nome);

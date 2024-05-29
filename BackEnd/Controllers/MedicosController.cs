@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Mech.Database;
 using Mech.Code.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +16,26 @@ public class MedicosController(MechDbContext ctx) : ControllerBase
     [ProducesResponseType(201)]
     public async Task<IActionResult> Create([FromBody] MedicoIn data)
     {
+        using var transaction = await ctx.Database.BeginTransactionAsync();
+
         var medico = new Medico(data.Nome, data.CRM);
         ctx.Medicos.Add(medico);
-
         await ctx.SaveChangesAsync();
 
-        return Created();
+        var especialidades = await ctx.Especialidades
+            .Where(x => data.Especialidades.Contains(x.Id))
+            .Select(x => x.Id)
+            .ToListAsync();
+
+        especialidades.ForEach(x =>
+        {
+            ctx.Add(new MedicoEspecialidade(medico.Id, x));
+        });
+        await ctx.SaveChangesAsync();
+
+        await transaction.CommitAsync();
+
+        return Created("", medico.ToOut());
     }
 
     /// <summary>
