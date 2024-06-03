@@ -12,7 +12,7 @@ public class PacienteConfig : IEntityTypeConfiguration<Paciente>
         paciente.HasKey(a => a.Id);
         paciente.Property(a => a.Id).ValueGeneratedOnAdd();
 
-        paciente.Property(m => m.Cpf).HasColumnName("cpf");
+        paciente.Property(m => m.CPF).HasColumnName("cpf");
         paciente.Property(m => m.CNS).HasColumnName("cns");
         paciente.Property(m => m.Nome).HasColumnName("nome");
         paciente.Property(m => m.DataDeNascimento).HasColumnName("data_de_nascimento");
@@ -28,39 +28,5 @@ public class PacienteConfig : IEntityTypeConfiguration<Paciente>
         paciente.HasMany(p => p.Estadias)
             .WithOne()
             .HasForeignKey(e => e.PacienteId);
-
-        if (Env.IsTesting()) return;
-        paciente.HasData(new Paciente
-        {
-            Id = 1,
-            GeneroId = 2,
-            EnderecoId = 1,
-            Cpf = "05531923023",
-            CNS = "4684686781",
-            Nome = "Reginaldo Rossi",
-            DataDeNascimento = new DateOnly(1944, 02, 14),
-        });
-
-        paciente.HasData(new Paciente
-        {
-            Id = 2,
-            GeneroId = 2,
-            EnderecoId = 2,
-            Cpf = "29328343046",
-            CNS = "6186168168",
-            Nome = "Faustão",
-            DataDeNascimento = new DateOnly(1950, 04, 02),
-        });
-
-        paciente.HasData(new Paciente
-        {
-            Id = 3,
-            GeneroId = 1,
-            EnderecoId = 2,
-            Cpf = "48993836060",
-            CNS = "8451947367",
-            Nome = "Raquel Dos Teclados",
-            DataDeNascimento = new DateOnly(1980, 09, 18),
-        });
     }
 }

@@ -30,7 +30,7 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
         var especialidade = await ctx.Especialidades.FirstOrDefaultAsync(e => e.Id == id);
 
         if (especialidade == null)
-            NotFound();
+            return NotFound();
 
         especialidade.Update(data.Nome);
         await ctx.SaveChangesAsync();
@@ -55,7 +55,7 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
         var especialidade = await ctx.Especialidades.FirstOrDefaultAsync(e => e.Id == id);
 
         if (especialidade == null)
-            NotFound();
+            return NotFound();
 
         ctx.Remove(especialidade!);
         await ctx.SaveChangesAsync();

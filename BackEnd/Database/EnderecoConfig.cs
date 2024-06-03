@@ -19,9 +19,5 @@ public class EnderecoConfig : IEntityTypeConfiguration<Endereco>
         endereco.HasOne<Cidade>()
             .WithMany()
             .HasForeignKey(e => e.CidadeId);
-        
-        if (Env.IsTesting()) return;
-        endereco.HasData(new Endereco { Id = 1, CEP = "5861618", Rua = "Paulo Afonso", Bairro = "Centenário", CidadeId = 1 });
-        endereco.HasData(new Endereco { Id = 2, CEP = "6746816", Rua = "Walter de Afogados", Bairro = "Janga", CidadeId = 2 });
     }
 }

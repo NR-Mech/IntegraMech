@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(MechDbContext))]
-    [Migration("20240426014211_Initial")]
-    partial class Initial
+    [Migration("20240603235041_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,12 @@ namespace BackEnd.Migrations
                             Id = 3L,
                             EstadoId = "SP",
                             Nome = "Marília"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            EstadoId = "PE",
+                            Nome = "Santa Cruz do Capibaribe"
                         });
                 });
 
@@ -320,7 +326,7 @@ namespace BackEnd.Migrations
                         new
                         {
                             Id = 1L,
-                            DataDaAdmissao = new DateTime(2024, 4, 24, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(718),
+                            DataDaAdmissao = new DateTime(2024, 6, 2, 20, 50, 41, 664, DateTimeKind.Local).AddTicks(6827),
                             MedicoId = 1L,
                             MotivoDaAdmissao = "Coma alcoólico / deu PT",
                             PacienteId = 1L,
@@ -329,8 +335,8 @@ namespace BackEnd.Migrations
                         new
                         {
                             Id = 2L,
-                            DataDaAdmissao = new DateTime(2024, 3, 26, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(741),
-                            DataDaAlta = new DateTime(2024, 4, 15, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(741),
+                            DataDaAdmissao = new DateTime(2024, 5, 4, 20, 50, 41, 664, DateTimeKind.Local).AddTicks(6845),
+                            DataDaAlta = new DateTime(2024, 5, 24, 20, 50, 41, 664, DateTimeKind.Local).AddTicks(6845),
                             MedicoId = 2L,
                             MotivoDaAdmissao = "Transplante de coração",
                             PacienteId = 2L,
@@ -634,7 +640,7 @@ namespace BackEnd.Migrations
                         .HasColumnType("text")
                         .HasColumnName("cns");
 
-                    b.Property<string>("Cpf")
+                    b.Property<string>("CPF")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("cpf");
@@ -672,7 +678,7 @@ namespace BackEnd.Migrations
                         {
                             Id = 1L,
                             CNS = "4684686781",
-                            Cpf = "05531923023",
+                            CPF = "05531923023",
                             DataDeNascimento = new DateOnly(1944, 2, 14),
                             EnderecoId = 1L,
                             GeneroId = 2L,
@@ -682,7 +688,7 @@ namespace BackEnd.Migrations
                         {
                             Id = 2L,
                             CNS = "6186168168",
-                            Cpf = "29328343046",
+                            CPF = "29328343046",
                             DataDeNascimento = new DateOnly(1950, 4, 2),
                             EnderecoId = 2L,
                             GeneroId = 2L,
@@ -692,7 +698,7 @@ namespace BackEnd.Migrations
                         {
                             Id = 3L,
                             CNS = "8451947367",
-                            Cpf = "48993836060",
+                            CPF = "48993836060",
                             DataDeNascimento = new DateOnly(1980, 9, 18),
                             EnderecoId = 2L,
                             GeneroId = 1L,
@@ -713,15 +719,15 @@ namespace BackEnd.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("esta_ocupado");
 
-                    b.Property<long>("TipoDeQuartoId")
+                    b.Property<long>("TipoId")
                         .HasColumnType("bigint")
-                        .HasColumnName("tipo_de_quarto_id");
+                        .HasColumnName("tipo_id");
 
                     b.HasKey("Id")
                         .HasName("pk_quartos");
 
-                    b.HasIndex("TipoDeQuartoId")
-                        .HasDatabaseName("ix_quartos_tipo_de_quarto_id");
+                    b.HasIndex("TipoId")
+                        .HasDatabaseName("ix_quartos_tipo_id");
 
                     b.ToTable("quartos", "mech");
 
@@ -730,25 +736,25 @@ namespace BackEnd.Migrations
                         {
                             Id = 1L,
                             EstaOcupado = true,
-                            TipoDeQuartoId = 1L
+                            TipoId = 1L
                         },
                         new
                         {
                             Id = 2L,
                             EstaOcupado = false,
-                            TipoDeQuartoId = 2L
+                            TipoId = 2L
                         },
                         new
                         {
                             Id = 3L,
                             EstaOcupado = true,
-                            TipoDeQuartoId = 2L
+                            TipoId = 2L
                         },
                         new
                         {
                             Id = 4L,
                             EstaOcupado = false,
-                            TipoDeQuartoId = 3L
+                            TipoId = 3L
                         });
                 });
 
@@ -791,12 +797,14 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("Mech.Domain.Cidade", b =>
                 {
-                    b.HasOne("Mech.Domain.Estado", null)
+                    b.HasOne("Mech.Domain.Estado", "Estado")
                         .WithMany()
                         .HasForeignKey("EstadoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_cidades_estado_estado_id");
+
+                    b.Navigation("Estado");
                 });
 
             modelBuilder.Entity("Mech.Domain.DepartamentoMedico", b =>
@@ -881,7 +889,7 @@ namespace BackEnd.Migrations
                         .HasForeignKey("GeneroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_pacientes_genero_genero_id");
+                        .HasConstraintName("fk_pacientes_generos_genero_id");
 
                     b.Navigation("Endereco");
 
@@ -890,12 +898,14 @@ namespace BackEnd.Migrations
 
             modelBuilder.Entity("Mech.Domain.Quarto", b =>
                 {
-                    b.HasOne("Mech.Domain.TipoDeQuarto", null)
+                    b.HasOne("Mech.Domain.TipoDeQuarto", "Tipo")
                         .WithMany()
-                        .HasForeignKey("TipoDeQuartoId")
+                        .HasForeignKey("TipoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_quartos_tipo_de_quarto_tipo_de_quarto_id");
+                        .HasConstraintName("fk_quartos_tipo_de_quarto_tipo_id");
+
+                    b.Navigation("Tipo");
                 });
 
             modelBuilder.Entity("Mech.Domain.Paciente", b =>

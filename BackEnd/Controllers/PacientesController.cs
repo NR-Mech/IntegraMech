@@ -1,4 +1,3 @@
-using Mech.Domain;
 using Mech.Database;
 using Mech.Code.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +16,23 @@ public class PacientesController(MechDbContext ctx) : ControllerBase
     [ProducesResponseType(201)]
     public async Task<IActionResult> Create([FromBody] PacienteIn data)
     {
-        var paciente = new Paciente { Nome = data.Nome };
+        var genero = await ctx.Generos.FirstOrDefaultAsync(x => x.Id == data.GeneroId);
+        if (genero == null) return BadRequest("Gênero não encontrado.");
+
+        var cidade = await ctx.Cidades.FirstOrDefaultAsync(x => x.Id == data.CidadeId);
+        if (cidade == null) return BadRequest("Cidade não encontrada.");
+
+        var paciente = new Paciente(
+            data.Nome,
+            data.Cpf,
+            data.CNS,
+            DateOnly.Parse(data.DataDeNascimento),
+            data.GeneroId,
+            data.CidadeId,
+            data.CEP,
+            data.Rua,
+            data.Bairro
+        );
         ctx.Pacientes.Add(paciente);
 
         await ctx.SaveChangesAsync();

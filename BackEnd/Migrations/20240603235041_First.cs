@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BackEnd.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -185,15 +185,15 @@ namespace BackEnd.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    tipo_de_quarto_id = table.Column<long>(type: "bigint", nullable: false),
+                    tipo_id = table.Column<long>(type: "bigint", nullable: false),
                     esta_ocupado = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_quartos", x => x.id);
                     table.ForeignKey(
-                        name: "fk_quartos_tipo_de_quarto_tipo_de_quarto_id",
-                        column: x => x.tipo_de_quarto_id,
+                        name: "fk_quartos_tipo_de_quarto_tipo_id",
+                        column: x => x.tipo_id,
                         principalSchema: "mech",
                         principalTable: "tipos_de_quarto",
                         principalColumn: "id",
@@ -233,9 +233,9 @@ namespace BackEnd.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     genero_id = table.Column<long>(type: "bigint", nullable: false),
                     endereco_id = table.Column<long>(type: "bigint", nullable: false),
+                    nome = table.Column<string>(type: "text", nullable: false),
                     cpf = table.Column<string>(type: "text", nullable: false),
                     cns = table.Column<string>(type: "text", nullable: false),
-                    nome = table.Column<string>(type: "text", nullable: false),
                     data_de_nascimento = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
@@ -249,7 +249,7 @@ namespace BackEnd.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "fk_pacientes_genero_genero_id",
+                        name: "fk_pacientes_generos_genero_id",
                         column: x => x.genero_id,
                         principalSchema: "mech",
                         principalTable: "generos",
@@ -397,7 +397,8 @@ namespace BackEnd.Migrations
                 {
                     { 1L, "PE", "Caruaru" },
                     { 2L, "PE", "Recife" },
-                    { 3L, "SP", "Marília" }
+                    { 3L, "SP", "Marília" },
+                    { 4L, "PE", "Santa Cruz do Capibaribe" }
                 });
 
             migrationBuilder.InsertData(
@@ -429,7 +430,7 @@ namespace BackEnd.Migrations
             migrationBuilder.InsertData(
                 schema: "mech",
                 table: "quartos",
-                columns: new[] { "id", "esta_ocupado", "tipo_de_quarto_id" },
+                columns: new[] { "id", "esta_ocupado", "tipo_id" },
                 values: new object[,]
                 {
                     { 1L, true, 1L },
@@ -465,8 +466,8 @@ namespace BackEnd.Migrations
                 columns: new[] { "id", "data_da_admissao", "data_da_alta", "medico_id", "motivo_da_admissao", "paciente_id", "quarto_id" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2024, 4, 24, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(718), null, 1L, "Coma alcoólico / deu PT", 1L, 1L },
-                    { 2L, new DateTime(2024, 3, 26, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(741), new DateTime(2024, 4, 15, 22, 42, 10, 806, DateTimeKind.Local).AddTicks(741), 2L, "Transplante de coração", 2L, 3L }
+                    { 1L, new DateTime(2024, 6, 2, 20, 50, 41, 664, DateTimeKind.Local).AddTicks(6827), null, 1L, "Coma alcoólico / deu PT", 1L, 1L },
+                    { 2L, new DateTime(2024, 5, 4, 20, 50, 41, 664, DateTimeKind.Local).AddTicks(6845), new DateTime(2024, 5, 24, 20, 50, 41, 664, DateTimeKind.Local).AddTicks(6845), 2L, "Transplante de coração", 2L, 3L }
                 });
 
             migrationBuilder.CreateIndex(
@@ -524,10 +525,10 @@ namespace BackEnd.Migrations
                 column: "genero_id");
 
             migrationBuilder.CreateIndex(
-                name: "ix_quartos_tipo_de_quarto_id",
+                name: "ix_quartos_tipo_id",
                 schema: "mech",
                 table: "quartos",
-                column: "tipo_de_quarto_id");
+                column: "tipo_id");
         }
 
         /// <inheritdoc />

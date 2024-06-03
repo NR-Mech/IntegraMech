@@ -1,4 +1,3 @@
-
 namespace Mech.Code.Dtos;
 
 public class DepartamentoOut

@@ -1,6 +1,4 @@
-
 namespace Mech.Code.Dtos;
-
 
 public class PacienteOut
 {

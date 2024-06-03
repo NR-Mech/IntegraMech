@@ -9,6 +9,38 @@ namespace Mech.Code.Controllers;
 public class EstadiasController(MechDbContext ctx) : ControllerBase
 {
     /// <summary>
+    /// Cria uma nova estadia.
+    /// </summary>
+    [HttpPost]
+    [ProducesResponseType(201)]
+    [Produces("application/json"), Consumes("application/json")]
+    public async Task<IActionResult> Create([FromBody] EstadiaIn data )
+    {
+        var paciente = await ctx.Pacientes.FirstOrDefaultAsync(x => x.Id == data.PacienteId);
+        if (paciente == null) return BadRequest("Paciente não encontrado.");
+
+        var medico = await ctx.Medicos.FirstOrDefaultAsync(x => x.Id == data.MedicoId);
+        if (medico == null) return BadRequest("Médico não encontrado.");
+
+        var quarto = await ctx.Quartos.FirstOrDefaultAsync(x => x.Id == data.QuartoId);
+        if (quarto == null) return BadRequest("Quarto não encontrado.");
+        if (quarto.EstaOcupado) return BadRequest("Quarto ocupado.");
+
+        var estadia = new Estadia(
+            data.PacienteId,
+            data.MedicoId,
+            data.QuartoId,
+            data.MotivoDaAdmissao,
+            data.DataDaAdmissao
+        );
+        ctx.Estadias.Add(estadia);
+
+        await ctx.SaveChangesAsync();
+
+        return Created("", estadia.ToOut());
+    }
+
+    /// <summary>
     /// Retorna todas as estadias dos pacientes.
     /// </summary>
     [HttpGet]
@@ -34,7 +66,7 @@ public class EstadiasController(MechDbContext ctx) : ControllerBase
             INNER JOIN
                 mech.quartos q ON q.id = e.quarto_id
             INNER JOIN
-                mech.tipos_de_quarto tdq ON tdq.id = q.tipo_de_quarto_id
+                mech.tipos_de_quarto tdq ON tdq.id = q.tipo_id
             ORDER BY
                 e.id
         ";

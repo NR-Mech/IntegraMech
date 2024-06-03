@@ -18,10 +18,5 @@ public class MedicoConfig : IEntityTypeConfiguration<Medico>
         medico.HasMany<Estadia>()
             .WithOne()
             .HasForeignKey(e => e.MedicoId);
-        
-        if (Env.IsTesting()) return;
-        medico.HasData(new Medico { Id = 1, Nome = "Dr. Hans Chucrutes", CRM = "852456/SP" });
-        medico.HasData(new Medico { Id = 2, Nome = "Dr. Chico Science", CRM = "159753/PE" });
-        medico.HasData(new Medico { Id = 3, Nome = "Dr. Zeca Pagodinho", CRM = "354961/RJ" });
     }
 }

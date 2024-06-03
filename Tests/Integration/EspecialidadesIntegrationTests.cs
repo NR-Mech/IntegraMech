@@ -30,14 +30,14 @@ public class EspecialidadesIntegrationTests : IntegrationTestBase
         // Arrange
         var client = _factory.CreateClient();
 
+        await client.PostAsJsonAsync("/especialidades", new EspecialidadeIn { Nome = "Homeopatia" });
+        await client.PostAsJsonAsync("/especialidades", new EspecialidadeIn { Nome = "Angiorradiologia e Cirurgia Endovascular" });
+
         // Act
         var especialidades = await client.GetFromJsonAsync<List<EspecialidadeOut>>("/especialidades");
 
         // Assert
-        especialidades![0].Nome.Should().Be("Alergia e Imunologia");
-        especialidades![1].Nome.Should().Be("Cardiologia");
-        especialidades![2].Nome.Should().Be("Cirurgia Oncológica");
-        especialidades![3].Nome.Should().Be("Geriatria");
-        especialidades![4].Nome.Should().Be("Homeopatia");
+        especialidades![0].Nome.Should().Be("Angiorradiologia e Cirurgia Endovascular");
+        especialidades![1].Nome.Should().Be("Homeopatia");
     }
 }

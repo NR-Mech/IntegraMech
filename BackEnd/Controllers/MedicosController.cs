@@ -50,7 +50,8 @@ public class MedicosController(MechDbContext ctx) : ControllerBase
             SELECT
                 m.id,
                 m.nome,
-                ARRAY_AGG(e.nome) AS especialidades
+                m.crm,
+                ARRAY_REMOVE(ARRAY_AGG(e.nome), NULL) AS especialidades
             FROM
                 mech.medicos m
             LEFT JOIN
