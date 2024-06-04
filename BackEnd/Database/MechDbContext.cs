@@ -185,7 +185,6 @@ public class MechDbContext : DbContext
     {
         if (!Env.IsTesting())
         {
-            Database.EnsureDeleted();
             Database.Migrate();
         }
     }
