@@ -35,6 +35,8 @@ public class EstadiasController(MechDbContext ctx) : ControllerBase
         );
         ctx.Estadias.Add(estadia);
 
+        quarto.EstaOcupado = true;
+
         await ctx.SaveChangesAsync();
 
         return Created("", estadia.ToOut());

@@ -9,6 +9,9 @@ namespace Mech.Code.Controllers;
 [ApiController, Route("[controller]")]
 public class EspecialidadesController(MechDbContext ctx) : ControllerBase
 {
+    /// <summary>
+    /// Cria uma nova especialidade.
+    /// </summary>
     [HttpPost]
     [ProducesResponseType(201)]
     [Produces("application/json"), Consumes("application/json")]
@@ -22,6 +25,9 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
         return Created("", especialidade.ToOut());
     }
 
+    /// <summary>
+    /// Atualiza uma especialidade.
+    /// </summary>
     [HttpPut("{id}")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(EspecialidadeOut), 200)]
@@ -38,6 +44,9 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
         return Ok(especialidade.ToOut());
     }
 
+    /// <summary>
+    /// Retorna todas as especialidades.
+    /// </summary>
     [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(List<EspecialidadeOut>), 200)]
@@ -48,6 +57,9 @@ public class EspecialidadesController(MechDbContext ctx) : ControllerBase
         return Ok(especialidades.ConvertAll(e => e.ToOut()));
     }
 
+    /// <summary>
+    /// Deleta uma especialidade.
+    /// </summary>
     [HttpDelete("{id}")]
     [ProducesResponseType(typeof(NoContent),204)]
     public async Task<IActionResult> Delete([FromRoute] long id)

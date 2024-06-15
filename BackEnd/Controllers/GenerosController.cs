@@ -8,6 +8,9 @@ namespace Mech.Code.Controllers;
 [ApiController, Route("[controller]")]
 public class GenerosController(MechDbContext ctx) : ControllerBase
 {
+    /// <summary>
+    /// Cria um novo genêro.
+    /// </summary>
     [HttpPost]
     [ProducesResponseType(201)]
     [Produces("application/json"), Consumes("application/json")]
@@ -21,6 +24,9 @@ public class GenerosController(MechDbContext ctx) : ControllerBase
         return Created("", genero.ToOut());
     }
 
+    /// <summary>
+    /// Retorna todos os genêros.
+    /// </summary>
     [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(List<GeneroOut>), 200)]

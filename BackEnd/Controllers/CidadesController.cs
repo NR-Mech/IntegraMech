@@ -8,6 +8,9 @@ namespace Mech.Code.Controllers;
 [ApiController, Route("[controller]")]
 public class CidadesController(MechDbContext ctx) : ControllerBase
 {
+    /// <summary>
+    /// Retorna todas as cidades.
+    /// </summary>
     [HttpGet]
     [Produces("application/json")]
     [ProducesResponseType(typeof(List<CidadeOut>), 200)]
