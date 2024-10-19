@@ -18,7 +18,7 @@ public class Medico
 
     public MedicoOut ToOut()
     {
-        return new MedicoOut()
+        return new()
         {
             Id = Id,
             Nome = Nome,

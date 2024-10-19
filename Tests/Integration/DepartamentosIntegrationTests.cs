@@ -14,7 +14,8 @@ public class DepartamentosIntegrationTests : IntegrationTestBase
 
         var data = new DepartamentoIn
         {
-            Nome = "Urgência e Emergência", Descricao = "Departamento responsável por Urgência e Emergência"
+            Nome = "Urgência e Emergência",
+            Descricao = "Departamento responsável por Urgência e Emergência"
         };
 
         // Act
@@ -36,19 +37,22 @@ public class DepartamentosIntegrationTests : IntegrationTestBase
 
         var dept00 = new DepartamentoIn
         {
-            Nome = "Urgência e Emergência", Descricao = "Departamento responsável por Urgência e Emergência"
+            Nome = "Urgência e Emergência",
+            Descricao = "Departamento responsável por Urgência e Emergência"
         };
         await client.PostAsJsonAsync("/departamentos", dept00);
 
         var dept01 = new DepartamentoIn
         {
-            Nome = "Recursos Humanos", Descricao = "Departamento responsável por Recursos Humanos"
+            Nome = "Recursos Humanos",
+            Descricao = "Departamento responsável por Recursos Humanos"
         };
         await client.PostAsJsonAsync("/departamentos", dept01);
 
         var dept02 = new DepartamentoIn
         {
-            Nome = "Apoio Terapêutico", Descricao = "Departamento responsável por Apoio Terapêutico"
+            Nome = "Apoio Terapêutico",
+            Descricao = "Departamento responsável por Apoio Terapêutico"
         };
         await client.PostAsJsonAsync("/departamentos", dept02);
 

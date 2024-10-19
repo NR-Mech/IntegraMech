@@ -5,7 +5,6 @@ namespace Mech.Domain;
 public class Quarto
 {
     public long Id { get; set; }
-
     public long TipoId { get; set; }
     public TipoDeQuarto Tipo { get; set; }
 
@@ -13,7 +12,7 @@ public class Quarto
 
     public QuartoOut ToOut()
     {
-        return new QuartoOut
+        return new()
         {
             Id = Id,
             Tipo = Tipo.Nome,

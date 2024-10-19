@@ -18,7 +18,7 @@ public class Departamento
 
     public DepartamentoOut ToOut()
     {
-        return new DepartamentoOut
+        return new()
         {
             Id = Id,
             Nome = Nome,

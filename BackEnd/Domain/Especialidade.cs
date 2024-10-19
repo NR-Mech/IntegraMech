@@ -21,7 +21,7 @@ public class Especialidade
 
     public EspecialidadeOut ToOut()
     {
-        return new EspecialidadeOut
+        return new()
         {
             Id = Id,
             Nome = Nome,

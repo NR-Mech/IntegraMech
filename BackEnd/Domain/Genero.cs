@@ -16,7 +16,7 @@ public class Genero
 
     public GeneroOut ToOut()
     {
-        return new GeneroOut
+        return new()
         {
             Id = Id,
             Nome = Nome,

@@ -73,8 +73,8 @@ public class EstadiasController(MechDbContext ctx) : ControllerBase
                 e.id
         ";
 
-        var medicos = await ctx.Database.SqlQuery<EstadiaOut>(sql).ToListAsync();
+        var estadias = await ctx.Database.SqlQuery<EstadiaOut>(sql).ToListAsync();
 
-        return Ok(medicos);
+        return Ok(estadias);
     }
 }

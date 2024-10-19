@@ -13,7 +13,6 @@ public class PacientesController(MechDbContext ctx) : ControllerBase
     /// </summary>
     [HttpPost]
     [Produces("application/json"), Consumes("application/json")]
-    [ProducesResponseType(201)]
     public async Task<IActionResult> Create([FromBody] PacienteIn data)
     {
         var genero = await ctx.Generos.FirstOrDefaultAsync(x => x.Id == data.GeneroId);
@@ -37,7 +36,7 @@ public class PacientesController(MechDbContext ctx) : ControllerBase
 
         await ctx.SaveChangesAsync();
 
-        return Created();
+        return Created("", paciente.ToOut());
     }
 
     /// <summary>

@@ -2,7 +2,7 @@ using Mech.Domain;
 
 namespace Mech.Tests.Unit;
 
-public class CreateEspecialidadeUnitTests
+public class EspecialidadeUnitTests
 {
     [Test]
     public void Deve_criar_uma_especialidade()
@@ -41,6 +41,7 @@ public class CreateEspecialidadeUnitTests
         var dto = especialidade.ToOut();
 
         // Assert
+        dto.Id.Should().Be(especialidade.Id);
         dto.Nome.Should().Be(especialidade.Nome);
     }
 }

@@ -1,3 +1,5 @@
+using Mech.Code.Dtos;
+
 namespace Mech.Domain;
 
 public class Paciente
@@ -42,6 +44,17 @@ public class Paciente
             CEP = cep,
             Rua = rua,
             Bairro = bairro,
+        };
+    }
+
+    public PacienteOut ToOut()
+    {
+        return new()
+        {
+            Id = Id,
+            Nome = Nome,
+            Cpf = CPF,
+            CNS = CNS,
         };
     }
 }

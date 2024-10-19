@@ -30,9 +30,10 @@ public class Estadia
 
     public EstadiaOut ToOut()
     {
-        return new EstadiaOut
+        return new()
         {
             Id = Id,
+            MotivoDaAdmissao = MotivoDaAdmissao,
         };
     }
 }
