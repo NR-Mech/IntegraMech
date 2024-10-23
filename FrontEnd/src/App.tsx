@@ -1,15 +1,19 @@
-import React from "react";
-import { SideBar } from "./components/SideBar";
-import { Outlet } from "react-router-dom";
+import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { ThemeProvider } from "./components/theme/theme-provider";
+import { SidebarProvider } from "./components/ui/sidebar";
 
 export function App() {
-  return (
-    <div className="flex flex-row gap-3">
-      <SideBar/>
-      <Outlet/>
-    </div>
-  )
+	return (
+		<SidebarProvider>
+			<HelmetProvider>
+				<ThemeProvider storageKey="mech-theme" defaultTheme="dark">
+					<Helmet titleTemplate="%s | Mech" />
+					<RouterProvider router={router} />
+				</ThemeProvider>
+			</HelmetProvider>
+		</SidebarProvider>
+	);
 }
-
-
-
