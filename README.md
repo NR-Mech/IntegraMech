@@ -1,6 +1,6 @@
 # IntegraMech
 
-Description
+Project description
 
 # Departamentos
 {
