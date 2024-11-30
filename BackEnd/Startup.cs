@@ -24,6 +24,7 @@ public class Startup
     public static void Configure(IApplicationBuilder app, MechDbContext ctx)
     {
         ctx.Database.EnsureDeleted();
+
         ctx.Database.EnsureCreated();
 
         app.UseCors();
