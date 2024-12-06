@@ -19,8 +19,8 @@ export function Dashbord() {
 						<span>NOVO PACIENTE</span>
 					</Button>
 					</div>
-				<div className="mt-10 flex gap-5 justify-end p-2">
-					<div className="w-64 h-44 bg-zinc-900 border rounded-3xl p-6 z-10">
+				<div className="mt-10 flex gap-5 justify-end">
+					<div className="w-60 h-44 bg-zinc-900 border rounded-3xl p-6 z-10">
 						<div className="flex gap-2">
 							<Clock size={26} />
 							<p className="font-semibold text-xl">Em Espera</p>
@@ -29,7 +29,7 @@ export function Dashbord() {
 							<h1 className="text-5xl font-bold">32</h1>
 						</div>
 					</div>
-					<div className="w-64 h-44 bg-zinc-900 border rounded-3xl p-6 z-10">
+					<div className="w-60 h-44 bg-zinc-900 border rounded-3xl p-6 z-10">
 						<div className="flex gap-2">
 							<UserList size={26} />
 							<p className="font-semibold text-xl">Total</p>
@@ -38,7 +38,7 @@ export function Dashbord() {
 							<h1 className="text-5xl font-bold">48</h1>
 						</div>
 					</div>
-					<div className="w-64 h-44 bg-zinc-900 border rounded-3xl p-6 z-10">
+					<div className="w-60 h-44 bg-zinc-900 border rounded-3xl p-6 z-10">
 						<div className="flex gap-2">
 							<ListChecks size={26} />
 							<p className="font-semibold text-xl">Atendidos</p>
@@ -47,7 +47,7 @@ export function Dashbord() {
 							<h1 className="text-5xl font-bold">16</h1>
 						</div>
 					</div>
-					<div className="w-64 h-44 bg-zinc-900 border rounded-3xl p-6 z-10">
+					<div className="w-60 h-44 bg-zinc-900 border rounded-3xl p-6 z-10">
 						<div className="flex gap-2">
 							<ArrowCircleUp size={26} />
 							<p className="font-semibold text-xl">Produtividade</p>

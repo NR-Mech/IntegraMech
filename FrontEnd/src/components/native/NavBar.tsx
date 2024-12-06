@@ -14,7 +14,7 @@ export function NavBar() {
 					<MagnifyingGlass size={24} />
 				</Button>
 			</div>
-			<div className="flex ml-auto">
+			<div className="flex ml-auto mr-2">
 				<ThemeToggle />
 			</div>
 		</div>

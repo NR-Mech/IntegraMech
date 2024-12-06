@@ -18,7 +18,7 @@ import {
 
 export function SideBar() {
 	return (
-		<Sidebar>
+		<Sidebar className="fixed left-0 top-0">
 			<SidebarContent>
 				<SidebarGroup>
 					<SidebarGroupLabel>Mech</SidebarGroupLabel>
