@@ -1,45 +1,54 @@
-import { useEffect, useState } from "react";
-import { Api } from "../../../services/api";
+import { Helmet } from "react-helmet-async";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { MedicosTableRow } from "./Medicos-Table-Row";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { MedicosCreate } from "./Medicos-Create";
 
 export function Medicos() {
-	const [data, setData] = useState([]);
+  return (
+    <>
+      <Helmet title="Médicos" />
 
-	useEffect(() => {
-		Api.get("/medicos")
-			.then((response) => {
-				setData(response.data);
-				console.log(response.data);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}, []);
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center text-center justify-between mr-4">
+          <h1 className="text-3xl font-bold tracking-tight ml-4 mt-4">
+            Médicos
+          </h1>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline" size="lg" type="button">
+                Novo Médico
+              </Button>
+            </DialogTrigger>
+            <MedicosCreate />
+          </Dialog>
+        </div>
 
-	return (
-		<div className="ml-64 p-8">
-			<table className="table-auto">
-				<thead>
-					<tr className="bg-slate-300">
-						<th className="px-4 py-2 font-roboto">Médico</th>
-						<th className="px-4 py-2 font-roboto">Especialidades</th>
-					</tr>
-				</thead>
-				<tbody>
-					{data &&
-						data.map((medico: any, index) => {
-							return (
-								<tr key={index}>
-									<td className="border px-4 py-2 font-semibold font-roboto1">
-										{medico.nome}
-									</td>
-									<td className="border px-4 py-2">
-										{medico.especialidades.toString().replaceAll(",", ", ")}
-									</td>
-								</tr>
-							);
-						})}
-				</tbody>
-			</table>
-		</div>
-	);
+        <div className="space-y-2.5 ml-4 mr-4">
+          <div className="rounded-md border">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[140px]">CRM</TableHead>
+                  <TableHead className="w-[140px]">Telefone</TableHead>
+                  <TableHead className="w-[700px]">Nome</TableHead>
+                  <TableHead>Especialidade</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <MedicosTableRow />
+              </TableBody>
+            </Table>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
