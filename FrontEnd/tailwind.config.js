@@ -5,7 +5,8 @@ export default {
 	theme: {
     	extend: {
     		fontFamily: {
-    			roboto: ["Roboto", "sans-serif"]
+    			'raleway': ['Raleway', 'serif'],
+					'mulish': ['Mulish', 'sans-serif']
     		},
     		borderRadius: {
     			lg: 'var(--radius)',
