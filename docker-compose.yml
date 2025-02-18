@@ -1,0 +1,78 @@
+services:
+  postgres_pi:
+    image: postgres:17.3
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data_pi:/var/lib/postgresql/data
+      - ./BackEnd/s.sql:/docker-entrypoint-initdb.d/s.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - app-pi
+
+  backend1_pi:
+    build:
+      context: .
+      dockerfile: Dockerfile.back
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres_pi;Database=postgres;Username=postgres;Password=postgres
+    depends_on:
+      - postgres_pi
+    networks:
+      - app-pi
+    expose:
+      - "5001"
+
+  backend2_pi:
+    build:
+      context: .
+      dockerfile: Dockerfile.back
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5002
+      - ConnectionStrings__DefaultConnection=Host=postgres_pi;Database=postgres;Username=postgres;Password=postgres
+    depends_on:
+      - postgres_pi
+    networks:
+      - app-pi
+    expose:
+      - "5002"
+
+  backend3_pi:
+    build:
+      context: .
+      dockerfile: Dockerfile.back
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5003
+      - ConnectionStrings__DefaultConnection=Host=postgres_pi;Database=postgres;Username=postgres;Password=postgres
+    depends_on:
+      - postgres_pi
+    networks:
+      - app-pi
+    expose:
+      - "5003"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend1_pi
+      - backend2_pi
+      - backend3_pi
+    networks:
+      - app-pi
+
+volumes:
+  postgres_data_pi:
+
+networks:
+  app-pi:
+    driver: bridge
