@@ -2,9 +2,9 @@ services:
   postgres_pi:
     image: postgres:17.3
     environment:
+      POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres && psql -U postgres -d postgres -c 'SELECT 1;'"]
       interval: 10s
@@ -15,78 +15,49 @@ services:
       - ./BackEnd/s.sql:/docker-entrypoint-initdb.d/s.sql
     ports:
       - "5432:5432"
-    networks:
-      - app-pi
     restart: unless-stopped
 
-  backend1_pi:
+  api01: &api
     build:
       context: .
       dockerfile: Dockerfile.back
+    hostname: api01
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:5001
-      - ConnectionStrings__DefaultConnection=Host=postgres_pi;Database=postgres;Username=postgres;Password=postgres;Pooling=true;MinPoolSize=1;MaxPoolSize=10
-    depends_on:
-      postgres_pi:
-        condition: service_healthy
-    networks:
-      - app-pi
+      - ASPNETCORE_URLS=http://+:80
+      - Database__ConnectionString=Host=postgres_pi;Username=postgres;Password=postgres;Port=5432;Database=mech-db;Minimum Pool Size=10;Maximum Pool Size=10;Multiplexing=true;
     ports:
-      - "5001:5001"
-    restart: unless-stopped
-
-  backend2_pi:
-    build:
-      context: .
-      dockerfile: Dockerfile.back
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:5002
-      - ConnectionStrings__DefaultConnection=Host=postgres_pi;Database=postgres;Username=postgres;Password=postgres;Pooling=true;MinPoolSize=1;MaxPoolSize=10
+      - "8081:80"
     depends_on:
-      postgres_pi:
-        condition: service_healthy
-    networks:
-      - app-pi
-    ports: 
-      - "5002:5002"
-    restart: unless-stopped
+      - postgres_pi
 
-  backend3_pi:
-    build:
-      context: .
-      dockerfile: Dockerfile.back
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:5003
-      - ConnectionStrings__DefaultConnection=Host=postgres_pi;Database=postgres;Username=postgres;Password=postgres;Pooling=true;MinPoolSize=1;MaxPoolSize=10
-    depends_on:
-      postgres_pi:
-        condition: service_healthy
-    networks:
-      - app-pi
+  api02:
+    <<: *api
+    hostname: api02
     ports:
-      - "5003:5003"
-    restart: unless-stopped
+      - "8082:80"
+
+  api03:
+    <<: *api
+    hostname: api03
+    ports:
+      - "8083:80"
 
   nginx:
     image: nginx:latest
     ports:
-      - "80:80"
+      - "9999:9999"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - backend1_pi
-      - backend2_pi
-      - backend3_pi
-    networks:
-      - app-pi
+      - api01
+      - api02
+      - api03
     restart: unless-stopped
 
 volumes:
   postgres_data_pi:
 
 networks:
-  app-pi:
+  default:
     driver: bridge
+    name: net-pi
