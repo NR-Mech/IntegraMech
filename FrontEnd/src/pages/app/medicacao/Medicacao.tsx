@@ -8,23 +8,23 @@ import {
 } from "@/components/ui/table";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ExamesTableRow } from "./Exames-Table-Row";
+import { MedicacaoTableRow } from "./Medicacao-Table-Row";
 
 
-export function Exames() {
+export function Medicacao() {
   return (
     <>
-      <Helmet title="Exames" />
+      <Helmet title="Medicação" />
 
       <div className="flex flex-col gap-4">
         <div className="flex items-center text-center justify-between mr-4">
           <h1 className="text-3xl font-bold tracking-tight ml-4 mt-4">
-            Exames
+            Medicação
           </h1>
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline" size="lg" type="button">
-                Novo Exame
+                Nova Medicação
               </Button>
             </DialogTrigger>
             {/* <MedicosCreate /> */}
@@ -43,7 +43,7 @@ export function Exames() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <ExamesTableRow />
+                <MedicacaoTableRow />
               </TableBody>
             </Table>
           </div>
