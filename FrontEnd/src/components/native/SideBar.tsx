@@ -17,7 +17,7 @@ import {
   FileText,
 } from "@phosphor-icons/react";
 import MechLogo from '@/mech-logo.svg';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export function SideBar() {
   const location = useLocation();
@@ -45,10 +45,10 @@ export function SideBar() {
                   }`} 
                   asChild
                 >
-                  <a href="/">
+                  <Link to="/">
                     <House size={22} weight="fill" className={isActive('/') ? 'text-white' : ''} />
                     <span className="text-lg font-mulish">Início</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem key="triagens">
@@ -60,10 +60,10 @@ export function SideBar() {
                   }`} 
                   asChild
                 >
-                  <a href="/triagens">
+                  <Link to="/triagens">
                     <FileText size={22} weight="fill" className={isActive('/triagens') ? 'text-white' : ''} />
                     <span className="text-lg font-mulish">Triagens</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem key="pacientes">
@@ -75,10 +75,10 @@ export function SideBar() {
                   }`} 
                   asChild
                 >
-                  <a href="/pacientes">
+                  <Link to="/pacientes">
                     <User size={22} weight="fill" className={isActive('/pacientes') ? 'text-primary-500' : 'text-gray-400'} />
                     <span className="text-lg font-mulish">Pacientes</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem key="medicacao">
@@ -90,10 +90,10 @@ export function SideBar() {
                   }`} 
                   asChild
                 >
-                  <a href="/medicacao">
+                  <Link to="/medicacao">
                     <Bandaids size={22} weight="fill" className={isActive('/medicacao') ? 'text-primary-500' : 'text-gray-400'} />
                     <span className="text-lg font-mulish">Medicação</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem key="exames">
@@ -105,10 +105,10 @@ export function SideBar() {
                   }`} 
                   asChild
                 >
-                  <a href="/exames">
+                  <Link to="/exames">
                     <FirstAidKit size={22} weight="fill" className={isActive('/exames') ? 'text-primary-500' : 'text-gray-400'} />
                     <span className="text-lg font-mulish">Exames</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem key="medicos">
@@ -120,10 +120,10 @@ export function SideBar() {
                   }`} 
                   asChild
                 >
-                  <a href="/medicos">
+                  <Link to="/medicos">
                     <Stethoscope size={22} weight="fill"  className={isActive('/medicos') ? 'text-primary-500' : 'text-gray-400'} />
                     <span className="text-lg font-mulish">Médicos</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
