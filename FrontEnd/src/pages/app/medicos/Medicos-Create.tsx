@@ -49,29 +49,39 @@ export function MedicosCreate() {
         <DialogTitle>Novo Médico</DialogTitle>
         <DialogDescription>Cadastrar um novo médico</DialogDescription>
       </DialogHeader>
-      <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-        <Label htmlFor="nome">Nome</Label>
-        <Input
-          onChange={(e) => setNome(e.target.value)}
-          id="nome"
-          type="text"
-          placeholder="Nome do médico"
-        />
-        <Label htmlFor="crm">CRM</Label>
-        <Input
-          onChange={(e) => setCrm(e.target.value)}
-          id="crm"
-          type="text"
-          placeholder="CRM"
-        />
-        <Label htmlFor="especialidade">Especialidades</Label>
-        <Input
-          onChange={handleEspecialidadesChange}
-          id="especialidade"
-          type="text"
-          placeholder="Especialidades"
-        />
-        <Button>Cadastrar</Button>
+      <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+        <div>
+          <Label className="text-title text-base mb-0.5 block" htmlFor="nome">
+            Nome
+          </Label>
+          <Input
+            onChange={(e) => setNome(e.target.value)}
+            id="nome"
+            type="text"
+          />
+        </div>
+        <div>
+          <Label className="text-title text-base mb-0.5 block" htmlFor="crm">
+            CRM
+          </Label>
+          <Input
+            onChange={(e) => setCrm(e.target.value)}
+            id="crm"
+            type="text"
+            placeholder="XXX-XX 000.000"
+          />
+        </div>
+        <div>
+          <Label className="text-title text-base mb-0.5 block" htmlFor="especialidade">
+            Especialidades
+          </Label>
+          <Input
+            onChange={handleEspecialidadesChange}
+            id="especialidade"
+            type="text"
+          />
+        </div>
+        <Button variant="primary">CADASTRAR</Button>
       </form>
     </DialogContent>
   );

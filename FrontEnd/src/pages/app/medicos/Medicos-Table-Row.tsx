@@ -20,12 +20,11 @@ export function MedicosTableRow() {
     <>
       {medicos.map((medico) => (
         <TableRow key={medico.id}>
-          <TableCell className="font-mono text-xs font-medium">
+          <TableCell className="font-mulish text-base text-title font-medium">
             {medico.crm}
           </TableCell>
-          <TableCell className="font-medium">(81)98303-8555</TableCell>
-          <TableCell className="font-medium">{medico.nome}</TableCell>
-          <TableCell className="font-medium">
+          <TableCell className="font-mulish text-base text-title font-medium">{medico.nome}</TableCell>
+          <TableCell className="font-mulish text-base text-title font-medium">
             {medico.especialidades.join(", ")}
           </TableCell>
         </TableRow>
