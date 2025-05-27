@@ -9,7 +9,7 @@ export function App() {
 	return (
 		<SidebarProvider>
 			<HelmetProvider>
-				<ThemeProvider storageKey="mech-theme" defaultTheme="dark">
+				<ThemeProvider storageKey="mech-theme" defaultTheme="system">
 					<Helmet titleTemplate="%s | Mech" />
 					<RouterProvider router={router} />
 				</ThemeProvider>
