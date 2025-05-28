@@ -21,7 +21,7 @@ export function Exames() {
             <h1 className="text-3xl font-bold text-white">Exames</h1>
             <Button className="rounded-xl" variant="primary">
               <PlusCircleIcon size={22} weight="fill" />
-              <span>ADICIONAR EXAME</span>
+              <span className="hidden md:inline">ADICIONAR EXAME</span>
             </Button>
           </div>
         </div>
