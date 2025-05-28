@@ -22,7 +22,7 @@ export function Triagens() {
               <DialogTrigger asChild>
                 <Button variant="primary" className="rounded-xl">
                   <PlusCircleIcon size={22} weight="fill" />
-                  ADICIONAR TRIAGEM
+                  <span className="hidden md:inline">ADICIONAR TRIAGEM</span>
                 </Button>
               </DialogTrigger>
               {/* <MedicosCreate /> */}

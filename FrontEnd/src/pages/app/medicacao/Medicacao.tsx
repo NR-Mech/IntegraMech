@@ -24,7 +24,7 @@ export function Medicacao() {
               <DialogTrigger asChild>
                 <Button variant="primary" className="rounded-xl">
                   <PlusCircleIcon size={22} weight="fill" />
-                  ADICIONAR MEDICAÇÃO
+                  <span className="hidden md:inline">ADICIONAR MEDICAÇÃO</span>
                 </Button>
               </DialogTrigger>
               {/* <MedicosCreate /> */}

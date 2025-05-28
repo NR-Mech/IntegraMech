@@ -10,16 +10,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-p2 rounded-xl font-semibold tracking-wider flex items-center justify-center text-primary-foreground hover:opacity-90 outline-none",
+          "bg-p2 rounded-xl font-bold tracking-wider flex items-center justify-center text-primary-foreground hover:opacity-90 outline-none duration-300 transition-all",
         destructive:
-          "bg-destructive text-destructive-foreground hover:opacity-90 outline-none",
+          "bg-destructive text-destructive-foreground hover:opacity-90 outline-none duration-300 transition-all",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground outline-none",
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground outline-none duration-300 transition-all",
         secondary:
-          "bg-transparent border-2 border-p2 text-p2 font-semibold tracking-wider pointer hover:opacity-90 outline-none",
-        link: "text-primary underline-offset-4 hover:underline outline-none",
+          "bg-transparent font-bold border-2 border-p2 text-p2 tracking-wider pointer hover:opacity-90 outline-none duration-300 transition-all",
+        link: "text-primary underline-offset-4 hover:underline outline-none duration-300 transition-all",
         theme:
-          "bg-background border rounded-xl border-c3 focus-visible:border-c3 text-foreground outline-none",
+          "bg-background border rounded-xl border-c3 focus-visible:border-c3 text-foreground outline-none duration-300 transition-all hover:opacity-90",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -23,7 +23,7 @@ export function Pacientes() {
               <DialogTrigger asChild>
                 <Button variant="primary" className="rounded-xl">
                   <PlusCircleIcon size={22} weight="fill" />
-                  ADICIONAR PACIENTE
+                  <span className="hidden md:inline">ADICIONAR PACIENTE</span>
                 </Button>
               </DialogTrigger>
               {/* <MedicosCreate /> */}
